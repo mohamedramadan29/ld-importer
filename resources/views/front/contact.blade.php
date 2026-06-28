@@ -7,6 +7,7 @@
     $hero = PageContent::getSectionAsArray('contact', 'hero');
     $channels = PageContent::getGrouped('contact', 'channels');
     $help = PageContent::getGrouped('contact', 'help');
+    $helpTitle = PageContent::getValue('contact', 'titles', 'help_title', 'How can we help you?');
     $form = PageContent::getSectionAsArray('contact', 'form');
     $features = PageContent::getGrouped('contact', 'features');
 @endphp
@@ -48,7 +49,7 @@
     <!-- HELP DIRECTORY SECTION -->
     @if(!empty($help[1]['title']))
     <section class="container help-section">
-        <h2 class="section-title-center">{{ $help['section']['title'] ?? 'How can we help you?' }}</h2>
+        <h2 class="section-title-center">{{ $helpTitle }}</h2>
         <div class="row g-4 mt-2">
             @foreach($help as $key => $item)
             @if(is_numeric($key) && !empty($item['title']))

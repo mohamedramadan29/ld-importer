@@ -12,6 +12,7 @@
     $whyUsTitle = PageContent::getValue('about', 'titles', 'why_us_title', 'Why Our Clients Choose Us?');
     $map = PageContent::getSectionAsArray('about', 'map');
     $contactTitle = PageContent::getValue('about', 'titles', 'contact_title', 'Contact Us');
+    $infoBar = PageContent::getGrouped('about', 'info_bar');
 @endphp
 @section('title')
 {{ $hero['title'] ?? 'من نحن' }} - {{ $setting->site_name ?? 'L.D Importer' }}
@@ -39,7 +40,7 @@
                         <div class="info-bar-item">
                             <i class="fa-solid fa-location-dot"></i>
                             <div>
-                                <p>Available In</p>
+                                <p>{{ $infoBar[1]['title'] ?? 'Available In' }}</p>
                                 <span>{{ $setting->address ?? 'Across the Country' }}</span>
                             </div>
                         </div>
@@ -48,7 +49,7 @@
                         <div class="info-bar-item">
                             <i class="fa-brands fa-whatsapp"></i>
                             <div>
-                                <p>WhatsApp</p>
+                                <p>{{ $infoBar[2]['title'] ?? 'WhatsApp' }}</p>
                                 <span>{{ $setting->whatsapp ?? '0790 123 456' }}</span>
                             </div>
                         </div>
@@ -57,7 +58,7 @@
                         <div class="info-bar-item">
                             <i class="fa-solid fa-phone"></i>
                             <div>
-                                <p>Call Us</p>
+                                <p>{{ $infoBar[3]['title'] ?? 'Call Us' }}</p>
                                 <span>{{ $setting->phone1 ?? '0790 123 456' }}</span>
                             </div>
                         </div>

@@ -238,7 +238,17 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <p class="text-muted mt-4"><i class="la la-info-circle"></i> المنتجات تظهر تلقائياً من قاعدة البيانات (أحدث 8 منتجات فعالة)</p>
+                                    <div class="form-group">
+                                        <label>نص رابط "عرض الكل"</label>
+                                        <input type="text" class="form-control" name="featured_view_all"
+                                            value="{{ $sections['featured']['view_all'] ?? '' }}"
+                                            placeholder="مثال: View All">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="text-muted"><i class="la la-info-circle"></i> المنتجات تظهر تلقائياً من قاعدة البيانات (أحدث 8 منتجات فعالة)</p>
                                 </div>
                             </div>
                         </div>

@@ -110,7 +110,9 @@
             <div>
                 <h2 class="section-title-en">{{ $featured['title'] ?? 'Featured Products' }}</h2>
             </div>
-            <a href="{{ route('front.category') }}" class="section-view-all">View All &nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+            @if(!empty($featured['view_all']))
+            <a href="{{ route('front.category') }}" class="section-view-all">{{ $featured['view_all'] }} &nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+            @endif
         </div>
 
         <div class="featured-slider-wrapper">

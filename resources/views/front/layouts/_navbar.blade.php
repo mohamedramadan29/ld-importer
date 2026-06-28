@@ -1,5 +1,6 @@
 @php
     $navCategories = \App\Models\dashboard\ProductCategory::where('status', 1)->get();
+    $navTitles = \App\Models\dashboard\PageContent::getSectionAsArray('navbar', 'titles');
 @endphp
     <!-- Unified Fixed Navigation Hub Layout -->
     <nav class="navbar-custom {{ request()->routeIs('front.product') ? 'scrolled' : '' }}" id="mainNavbar">
@@ -33,7 +34,7 @@
                     <div class="d-flex align-items-center gap-3">
                         <i class="fa-solid fa-magnifying-glass text-white opacity-50"></i>
                         <input type="text" class="form-control search-form-control" id="liveSearchInput"
-                            placeholder="Search premium furniture, tables, mirrors..." autocomplete="off">
+                            placeholder="{{ $navTitles['search_placeholder'] ?? 'Search premium furniture, tables, mirrors...' }}" autocomplete="off">
                         <button id="searchCloseBtn" type="button" class="search-close-btn"><i
                                 class="fa-solid fa-xmark"></i></button>
                     </div>
@@ -44,13 +45,13 @@
 
             <!-- Desktop Layout Inline Navigation -->
             <div class="nav-links-row">
-                <a class="nav-link-custom {{ request()->routeIs('front.index') ? 'active' : '' }}" href="{{ route('front.index') }}">Home</a>
-                <a class="nav-link-custom {{ request()->routeIs('front.about') ? 'active' : '' }}" href="{{ route('front.about') }}">About</a>
+                <a class="nav-link-custom {{ request()->routeIs('front.index') ? 'active' : '' }}" href="{{ route('front.index') }}">{{ $navTitles['home'] ?? 'Home' }}</a>
+                <a class="nav-link-custom {{ request()->routeIs('front.about') ? 'active' : '' }}" href="{{ route('front.about') }}">{{ $navTitles['about'] ?? 'About' }}</a>
                 @foreach($navCategories as $cat)
                 <a class="nav-link-custom {{ request()->is('category/'.$cat->slug) ? 'active' : '' }}" href="{{ route('front.category.show', $cat->slug) }}">{{ $cat->name }}</a>
                 @endforeach
-                <a class="nav-link-custom {{ request()->routeIs('front.category') && !request()->routeIs('front.category.show') ? 'active' : '' }}" href="{{ route('front.category') }}">All Products</a>
-                <a class="nav-link-custom {{ request()->routeIs('front.contact') ? 'active' : '' }}" href="{{ route('front.contact') }}">Contact</a>
+                <a class="nav-link-custom {{ request()->routeIs('front.category') && !request()->routeIs('front.category.show') ? 'active' : '' }}" href="{{ route('front.category') }}">{{ $navTitles['all_products'] ?? 'All Products' }}</a>
+                <a class="nav-link-custom {{ request()->routeIs('front.contact') ? 'active' : '' }}" href="{{ route('front.contact') }}">{{ $navTitles['contact'] ?? 'Contact' }}</a>
             </div>
         </div>
     </nav>
@@ -67,20 +68,20 @@
             <!-- Mobile Search -->
             <form action="{{ route('front.search') }}" method="GET" class="mb-4">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="q" placeholder="Search products...">
+                    <input type="text" class="form-control" name="q" placeholder="{{ $navTitles['search_products'] ?? 'Search products...' }}">
                     <button class="btn btn-outline-light" type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
             </form>
             <div class="offcanvas-menu-links pt-2">
-                <a href="{{ route('front.index') }}">Home</a>
-                <a href="{{ route('front.about') }}">About</a>
+                <a href="{{ route('front.index') }}">{{ $navTitles['home'] ?? 'Home' }}</a>
+                <a href="{{ route('front.about') }}">{{ $navTitles['about'] ?? 'About' }}</a>
                 @foreach($navCategories as $cat)
                 <a href="{{ route('front.category.show', $cat->slug) }}">{{ $cat->name }}</a>
                 @endforeach
-                <a href="{{ route('front.category') }}">All Products</a>
-                <a href="{{ route('front.contact') }}">Contact</a>
+                <a href="{{ route('front.category') }}">{{ $navTitles['all_products'] ?? 'All Products' }}</a>
+                <a href="{{ route('front.contact') }}">{{ $navTitles['contact'] ?? 'Contact' }}</a>
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@ class PageContentController extends Controller
 {
     use Message_Trait, Upload_Images;
 
-    private $pagePrefixes = ['about', 'contact', 'product'];
+    private $pagePrefixes = ['about', 'contact', 'product', 'footer', 'category_page'];
 
     private $sectionPrefixes = [
         'showroom_images', 'categories_meta',
@@ -20,7 +20,8 @@ class PageContentController extends Controller
         'philosophy', 'featured', 'showroom',
         'brief', 'services', 'stats', 'why_us', 'map',
         'channels', 'help', 'form',
-        'specs', 'gallery', 'related', 'whatsapp',
+        'specs', 'gallery', 'related', 'whatsapp', 'empty',
+        'info_bar', 'labels', 'titles', 'items',
     ];
 
     public function index()
@@ -53,6 +54,7 @@ class PageContentController extends Controller
     {
         $sections = [
             'hero'        => PageContent::getSectionAsArray('about', 'hero'),
+            'info_bar'    => PageContent::getGrouped('about', 'info_bar'),
             'brief'       => PageContent::getSectionAsArray('about', 'brief'),
             'services'    => PageContent::getGrouped('about', 'services'),
             'services_title' => PageContent::getValue('about', 'titles', 'services_title', ''),
@@ -78,6 +80,7 @@ class PageContentController extends Controller
             'hero'     => PageContent::getSectionAsArray('contact', 'hero'),
             'channels' => PageContent::getGrouped('contact', 'channels'),
             'help'     => PageContent::getGrouped('contact', 'help'),
+            'help_title' => PageContent::getValue('contact', 'titles', 'help_title', ''),
             'form'     => PageContent::getSectionAsArray('contact', 'form'),
             'features' => PageContent::getGrouped('contact', 'features'),
         ];
@@ -93,11 +96,12 @@ class PageContentController extends Controller
     public function product()
     {
         $sections = [
-            'specs'    => PageContent::getGrouped('product', 'specs'),
+            'specs'    => PageContent::getSectionAsArray('product', 'specs'),
             'gallery'  => PageContent::getSectionAsArray('product', 'gallery'),
             'related'  => PageContent::getSectionAsArray('product', 'related'),
             'whatsapp' => PageContent::getSectionAsArray('product', 'whatsapp'),
             'showroom' => PageContent::getSectionAsArray('product', 'showroom'),
+            'labels'   => PageContent::getSectionAsArray('product', 'labels'),
         ];
         return view('dashboard.page-contents.product', compact('sections'));
     }
@@ -136,6 +140,94 @@ class PageContentController extends Controller
     {
         $this->savePageContents('favorites', $request);
         return $this->success_message('تم حفظ محتوى صفحة المفضلة بنجاح');
+    }
+
+    public function footer()
+    {
+        $sections = [
+            'titles' => PageContent::getSectionAsArray('footer', 'titles'),
+            'items'  => PageContent::getGrouped('footer', 'items'),
+        ];
+        return view('dashboard.page-contents.footer', compact('sections'));
+    }
+
+    public function navbar()
+    {
+        $sections = [
+            'titles' => PageContent::getSectionAsArray('navbar', 'titles'),
+        ];
+        return view('dashboard.page-contents.navbar', compact('sections'));
+    }
+
+    public function updateNavbar(Request $request)
+    {
+        $titleMap = [
+            'home' => $request->input('titles_home', ''),
+            'about' => $request->input('titles_about', ''),
+            'all_products' => $request->input('titles_all_products', ''),
+            'contact' => $request->input('titles_contact', ''),
+            'search_placeholder' => $request->input('titles_search_placeholder', ''),
+            'search_products' => $request->input('titles_search_products', ''),
+        ];
+        foreach ($titleMap as $key => $value) {
+            PageContent::setValue('navbar', 'titles', $key, $value);
+        }
+        return $this->success_message('تم حفظ عناوين النافبار بنجاح');
+    }
+
+    public function updateFooter(Request $request)
+    {
+        // Save column titles directly to titles section
+        $titleMap = [
+            'info_title' => $request->input('titles_info_title', ''),
+            'collections_title' => $request->input('titles_collections_title', ''),
+            'customer_care_title' => $request->input('titles_customer_care_title', ''),
+            'view_all' => $request->input('titles_view_all', ''),
+            'copyright' => $request->input('titles_copyright', ''),
+        ];
+        foreach ($titleMap as $key => $value) {
+            PageContent::setValue('footer', 'titles', $key, $value);
+        }
+
+        // Save items
+        foreach ([1, 2, 3, 4] as $i) {
+            PageContent::setValue('footer', 'items', $i . '_title', $request->input("items_{$i}_title", ''));
+            PageContent::setValue('footer', 'items', $i . '_link', $request->input("items_{$i}_link", ''));
+        }
+
+        return $this->success_message('تم حفظ محتوى الفوتر بنجاح');
+    }
+
+    public function categoryPage()
+    {
+        $sections = [
+            'hero'      => PageContent::getSectionAsArray('category_page', 'hero'),
+            'filter'    => PageContent::getSectionAsArray('category_page', 'filter'),
+            'products'  => PageContent::getSectionAsArray('category_page', 'products'),
+            'features'  => PageContent::getGrouped('category_page', 'features'),
+        ];
+        return view('dashboard.page-contents.category-page', compact('sections'));
+    }
+
+    public function updateCategoryPage(Request $request)
+    {
+        // Hero
+        PageContent::setValue('category_page', 'hero', 'title', $request->input('hero_title', ''));
+        PageContent::setValue('category_page', 'hero', 'description', $request->input('hero_description', ''));
+
+        // Filter & Products toolbar
+        PageContent::setValue('category_page', 'filter', 'all_text', $request->input('filter_all_text', ''));
+        PageContent::setValue('category_page', 'products', 'show_text', $request->input('products_show_text', ''));
+        PageContent::setValue('category_page', 'products', 'word_text', $request->input('products_word_text', ''));
+
+        // Features / Trust Pillars
+        foreach ([1, 2, 3, 4] as $i) {
+            PageContent::setValue('category_page', 'features', $i . '_icon', $request->input("features_{$i}_icon", ''));
+            PageContent::setValue('category_page', 'features', $i . '_title', $request->input("features_{$i}_title", ''));
+            PageContent::setValue('category_page', 'features', $i . '_description', $request->input("features_{$i}_description", ''));
+        }
+
+        return $this->success_message('تم حفظ محتوى صفحة المنتجات بنجاح');
     }
 
     private function savePageContents($page, Request $request)

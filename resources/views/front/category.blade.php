@@ -1,19 +1,25 @@
 @extends('front.layouts.master')
 @php
     use App\Models\dashboard\PageContent;
-    $pageContent = PageContent::getSectionAsArray('home', 'categories');
+    $pageContent = PageContent::getSectionAsArray('category_page', 'hero');
+    $filterAll = PageContent::getValue('category_page', 'filter', 'all_text', 'ALL');
+    $productsShow = PageContent::getValue('category_page', 'products', 'show_text', 'SHOW');
+    $productsWord = PageContent::getValue('category_page', 'products', 'word_text', 'PRODUCTS');
+    $trustFeatures = PageContent::getGrouped('category_page', 'features');
+    $categories = \App\Models\dashboard\ProductCategory::where('status', 1)->get();
+    $labels = PageContent::getSectionAsArray('product', 'labels');
 @endphp
 @section('title')
-{{ $pageContent['section_title'] ?? 'All Products' }} - L.D IMPORTER
+{{ $pageContent['title'] ?? 'All Products' }} - L.D IMPORTER
 @endsection
 @section('content')
 
     <!-- Hero Banner -->
     <header class="page-hero">
         <div class="container" data-aos="zoom-out" data-aos-duration="1200">
-            <h1 class="hero-title-en">{{ $pageContent['section_title'] ?? 'ALL PRODUCTS' }}</h1>
+            <h1 class="hero-title-en">{{ $pageContent['title'] ?? 'ALL PRODUCTS' }}</h1>
             <div class="hero-divider"></div>
-            <p class="hero-desc">{{ $pageContent['section_description'] ?? 'Explore our curated furniture collections.' }}</p>
+            <p class="hero-desc">{{ $pageContent['description'] ?? 'Explore our curated furniture collections.' }}</p>
         </div>
     </header>
 
@@ -30,7 +36,7 @@
                             <rect x="3" y="14" width="7" height="7" rx="1"/>
                             <rect x="14" y="14" width="7" height="7" rx="1"/>
                         </svg>
-                        <span>ALL</span>
+                        <span>{{ $filterAll }}</span>
                     </a>
                 </div>
                 @foreach($categories as $index => $category)
@@ -51,8 +57,8 @@
     <!-- Toolbar -->
     <section class="container utility-controls-bar d-flex justify-content-between align-items-center">
         <div class="control-select-wrapper" data-aos="fade-up">
-            <span>SHOW</span>
-            <span class="fw-bold">{{ $allProducts->count() }} PRODUCTS</span>
+            <span>{{ $productsShow }}</span>
+            <span class="fw-bold">{{ $allProducts->count() }} {{ $productsWord }}</span>
         </div>
         <div class="d-flex align-items-center gap-4" data-aos="fade-left">
             <div class="view-mode-icons d-none d-sm-flex">
@@ -79,7 +85,7 @@
                         @if($product->has_discount)
                         <span class="badge badge-danger position-absolute" style="top:10px;left:10px;background-color:var(--premium-red);">Sale</span>
                         @endif
-                        <button class="quick-add-overlay-btn">VIEW DETAILS +</button>
+                        <button class="quick-add-overlay-btn">{{ $labels['view_details'] ?? 'VIEW DETAILS +' }}</button>
                     </div>
                     <div class="catalog-meta">
                         <div>
@@ -111,26 +117,15 @@
     <section class="trust-pillars-bar">
         <div class="container">
             <div class="row g-4">
-                <div class="col-6 col-md-3 pillar-item" data-aos="fade-up" data-aos-delay="50">
-                    <div class="pillar-icon"><i class="fa-solid fa-truck-fast"></i></div>
-                    <div class="pillar-title">FAST DELIVERY</div>
-                    <div class="pillar-subtitle">Secure, tracked priority shipping across all regions.</div>
+                @foreach($trustFeatures as $index => $feature)
+                @if(!empty($feature['title']))
+                <div class="col-6 col-md-3 pillar-item" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                    <div class="pillar-icon"><i class="{{ $feature['icon'] ?? 'fa-solid fa-check' }}"></i></div>
+                    <div class="pillar-title">{{ $feature['title'] }}</div>
+                    <div class="pillar-subtitle">{{ $feature['description'] ?? '' }}</div>
                 </div>
-                <div class="col-6 col-md-3 pillar-item" data-aos="fade-up" data-aos-delay="150">
-                    <div class="pillar-icon"><i class="fa-solid fa-award"></i></div>
-                    <div class="pillar-title">PREMIUM QUALITY</div>
-                    <div class="pillar-subtitle">Masterfully crafted utilizing premium grade raw elements.</div>
-                </div>
-                <div class="col-6 col-md-3 pillar-item" data-aos="fade-up" data-aos-delay="250">
-                    <div class="pillar-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="pillar-title">2 YEARS WARRANTY</div>
-                    <div class="pillar-subtitle">Full structural coverage protection guarantee on all products.</div>
-                </div>
-                <div class="col-6 col-md-3 pillar-item" data-aos="fade-up" data-aos-delay="350">
-                    <div class="pillar-icon"><i class="fa-solid fa-headset"></i></div>
-                    <div class="pillar-title">CUSTOMER SERVICE</div>
-                    <div class="pillar-subtitle">Dedicated luxury concierge consultants available 24/7.</div>
-                </div>
+                @endif
+                @endforeach
             </div>
         </div>
     </section>

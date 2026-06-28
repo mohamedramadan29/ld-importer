@@ -96,6 +96,45 @@
                         </div>
                     </a>
                 </div>
+                <div class="col-md-6 col-xl-3">
+                    <a href="{{ route('dashboard.page-contents.footer') }}" class="text-decoration-none">
+                        <div class="card pull-up">
+                            <div class="card-content">
+                                <div class="card-body text-center">
+                                    <i class="la la-arrow-down font-large-2 text-secondary mb-2"></i>
+                                    <h4>الفوتر</h4>
+                                    <p class="text-muted">عناوين الأعمدة والروابط وحقوق النشر</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <a href="{{ route('dashboard.page-contents.navbar') }}" class="text-decoration-none">
+                        <div class="card pull-up">
+                            <div class="card-content">
+                                <div class="card-body text-center">
+                                    <i class="la la-bars font-large-2 text-info mb-2"></i>
+                                    <h4>النافبار</h4>
+                                    <p class="text-muted">عناوين الروابط الرئيسية</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <a href="{{ route('dashboard.page-contents.category-page') }}" class="text-decoration-none">
+                        <div class="card pull-up">
+                            <div class="card-content">
+                                <div class="card-body text-center">
+                                    <i class="la la-th-large font-large-2 text-teal mb-2"></i>
+                                    <h4>صفحة المنتجات</h4>
+                                    <p class="text-muted">البانر والفلاتر والمميزات</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

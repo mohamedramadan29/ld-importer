@@ -149,6 +149,18 @@ Route::group([
                 // Favorites Page
                 Route::get('/favorites', 'favorites')->name('favorites');
                 Route::post('/favorites/update', 'updateFavorites')->name('favorites.update');
+
+                // Footer
+                Route::get('/footer', 'footer')->name('footer');
+                Route::post('/footer/update', 'updateFooter')->name('footer.update');
+
+                // Navbar
+                Route::get('/navbar', 'navbar')->name('navbar');
+                Route::post('/navbar/update', 'updateNavbar')->name('navbar.update');
+
+                // Category Page
+                Route::get('/category-page', 'categoryPage')->name('category-page');
+                Route::post('/category-page/update', 'updateCategoryPage')->name('category-page.update');
             });
         });
         ##################### End Page Contents ####################

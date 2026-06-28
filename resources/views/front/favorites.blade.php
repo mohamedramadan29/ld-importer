@@ -3,6 +3,7 @@
     use App\Models\dashboard\PageContent;
     $favHero = PageContent::getSectionAsArray('favorites', 'hero');
     $favEmpty = PageContent::getSectionAsArray('favorites', 'empty');
+    $labels = PageContent::getSectionAsArray('product', 'labels');
 @endphp
 @section('title')
 {{ $favHero['title'] ?? 'My Favorites' }} - L.D IMPORTER
@@ -35,7 +36,7 @@
                         @if($product->has_discount)
                         <span class="badge badge-danger position-absolute" style="top:10px;left:10px;background-color:var(--premium-red);">Sale</span>
                         @endif
-                        <button class="quick-add-overlay-btn">VIEW DETAILS +</button>
+                        <button class="quick-add-overlay-btn">{{ $labels['view_details'] ?? 'VIEW DETAILS +' }}</button>
                     </div>
                     <div class="catalog-meta">
                         <div>

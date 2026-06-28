@@ -103,7 +103,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>عنوان القسم</label>
-                                        <input type="text" class="form-control" name="help_section_title" value="{{ $sections['help']['section']['title'] ?? '' }}">
+                                        <input type="text" class="form-control" name="help_section_title" value="{{ $sections['help_title'] ?? '' }}">
                                     </div>
                                 </div>
                             </div>

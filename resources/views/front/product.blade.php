@@ -6,6 +6,7 @@
     $setting = Setting::getSettings();
     $pageSettings = PageContent::getSectionAsArray('product', 'whatsapp');
     $showroomSettings = PageContent::getSectionAsArray('product', 'showroom');
+    $labels = PageContent::getSectionAsArray('product', 'labels');
 @endphp
 @section('title')
 {{ $product->name }} - {{ $setting->site_name ?? 'L.D Importer' }}
@@ -69,10 +70,10 @@
                     <div class="stock-status">
                         @if($product->availability)
                         <i class="fa-solid fa-circle-check animate__animated animate__pulse animate__infinite"></i>
-                        Currently Available
+                        {{ $labels['available'] ?? 'Currently Available' }}
                         @else
                         <i class="fa-solid fa-circle-xmark text-danger"></i>
-                        <span class="text-danger">Out of Stock</span>
+                        <span class="text-danger">{{ $labels['out_of_stock'] ?? 'Out of Stock' }}</span>
                         @endif
                     </div>
                     <p class="product-description">{{ $product->description ?? '' }}</p>
@@ -98,33 +99,33 @@
                     @if($product->dimensions)
                     <div class="col-md spec-box">
                         <i class="fa-solid fa-ruler-combined"></i>
-                        <h5>Dimensions</h5>
+                        <h5>{{ $labels['spec_dimensions'] ?? 'Dimensions' }}</h5>
                         <p>{{ $product->dimensions }}</p>
                     </div>
                     @endif
                     @if($product->materials)
                     <div class="col-md spec-box">
                         <i class="fa-solid fa-layer-group"></i>
-                        <h5>Materials</h5>
+                        <h5>{{ $labels['spec_materials'] ?? 'Materials' }}</h5>
                         <p>{{ $product->materials }}</p>
                     </div>
                     @endif
                     @if($product->color)
                     <div class="col-md spec-box">
                         <i class="fa-solid fa-palette"></i>
-                        <h5>Color</h5>
+                        <h5>{{ $labels['spec_color'] ?? 'Color' }}</h5>
                         <p>{{ $product->color }}</p>
                     </div>
                     @endif
                     <div class="col-md spec-box">
                         <i class="fa-solid fa-shop"></i>
-                        <h5>Availability</h5>
-                        <p>{{ $product->availability ? 'In Stock' : 'Out of Stock' }}</p>
+                        <h5>{{ $labels['spec_availability'] ?? 'Availability' }}</h5>
+                        <p>{{ $product->availability ? ($labels['available'] ?? 'In Stock') : ($labels['out_of_stock'] ?? 'Out of Stock') }}</p>
                     </div>
                     @if($product->delivery_info)
                     <div class="col-md spec-box">
                         <i class="fa-solid fa-truck"></i>
-                        <h5>Delivery</h5>
+                        <h5>{{ $labels['spec_delivery'] ?? 'Delivery' }}</h5>
                         <p>{{ $product->delivery_info }}</p>
                     </div>
                     @endif
@@ -135,7 +136,7 @@
 
         @if($product->images->count() > 1)
         <section class="container">
-            <h4 class="sub-section-title">Additional Images</h4>
+            <h4 class="sub-section-title">{{ $labels['additional_images'] ?? 'Additional Images' }}</h4>
             <div class="row g-2 g-md-3">
                 @foreach($product->images as $index => $img)
                 <div class="col-md-3 col-6" onclick="changeSlide({{ $index }})">
@@ -150,7 +151,7 @@
 
         @if($relatedProducts->count() > 0)
         <section class="container mb-4">
-            <h4 class="sub-section-title">You May Also Like</h4>
+            <h4 class="sub-section-title">{{ $labels['related_title'] ?? 'You May Also Like' }}</h4>
             <div class="row g-3 g-md-4">
                 @foreach($relatedProducts as $related)
                 <div class="col-md-3 col-6">

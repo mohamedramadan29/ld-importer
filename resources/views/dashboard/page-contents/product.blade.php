@@ -73,6 +73,82 @@
                     </div>
                 </div>
 
+                {{-- Labels & Titles --}}
+                <div class="card">
+                    <div class="card-header"><h4 class="card-title"><i class="la la-tag"></i> العناوين والنصوص</h4></div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>نص التوفر (متوفر)</label>
+                                        <input type="text" class="form-control" name="labels_available" value="{{ $sections['labels']['available'] ?? '' }}" placeholder="Currently Available">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>نص التوفر (غير متوفر)</label>
+                                        <input type="text" class="form-control" name="labels_out_of_stock" value="{{ $sections['labels']['out_of_stock'] ?? '' }}" placeholder="Out of Stock">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>عنوان الصور الإضافية</label>
+                                        <input type="text" class="form-control" name="labels_additional_images" value="{{ $sections['labels']['additional_images'] ?? '' }}" placeholder="Additional Images">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>عنوان "منتجات مشابهة"</label>
+                                        <input type="text" class="form-control" name="labels_related_title" value="{{ $sections['labels']['related_title'] ?? '' }}" placeholder="You May Also Like">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>نص زر "عرض التفاصيل"</label>
+                                        <input type="text" class="form-control" name="labels_view_details" value="{{ $sections['labels']['view_details'] ?? '' }}" placeholder="VIEW DETAILS +">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>المواصفات: الأبعاد</label>
+                                        <input type="text" class="form-control" name="labels_spec_dimensions" value="{{ $sections['labels']['spec_dimensions'] ?? '' }}" placeholder="Dimensions">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>المواصفات: المواد</label>
+                                        <input type="text" class="form-control" name="labels_spec_materials" value="{{ $sections['labels']['spec_materials'] ?? '' }}" placeholder="Materials">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>المواصفات: اللون</label>
+                                        <input type="text" class="form-control" name="labels_spec_color" value="{{ $sections['labels']['spec_color'] ?? '' }}" placeholder="Color">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>المواصفات: التوفر</label>
+                                        <input type="text" class="form-control" name="labels_spec_availability" value="{{ $sections['labels']['spec_availability'] ?? '' }}" placeholder="Availability">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>المواصفات: التوصيل</label>
+                                        <input type="text" class="form-control" name="labels_spec_delivery" value="{{ $sections['labels']['spec_delivery'] ?? '' }}" placeholder="Delivery">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-actions mb-4">
                     <button type="submit" class="btn btn-primary btn-lg"><i class="la la-save"></i> حفظ التغييرات</button>
                     <a href="{{ route('dashboard.page-contents.index') }}" class="btn btn-secondary btn-lg">رجوع</a>

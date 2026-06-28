@@ -87,6 +87,15 @@
                     <li class="{{ Route::is('dashboard.page-contents.favorites') ? 'active' : '' }}">
                         <a class="menu-item" href="{{ route('dashboard.page-contents.favorites') }}"> صفحة المفضلة </a>
                     </li>
+                    <li class="{{ Route::is('dashboard.page-contents.footer') ? 'active' : '' }}">
+                        <a class="menu-item" href="{{ route('dashboard.page-contents.footer') }}"> الفوتر </a>
+                    </li>
+                    <li class="{{ Route::is('dashboard.page-contents.navbar') ? 'active' : '' }}">
+                        <a class="menu-item" href="{{ route('dashboard.page-contents.navbar') }}"> النافبار </a>
+                    </li>
+                    <li class="{{ Route::is('dashboard.page-contents.category-page') ? 'active' : '' }}">
+                        <a class="menu-item" href="{{ route('dashboard.page-contents.category-page') }}"> صفحة المنتجات </a>
+                    </li>
                 </ul>
             </li>
 

@@ -52,6 +52,27 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>عنوان العنصر 1 (مثال: Available In)</label>
+                                        <input type="text" class="form-control" name="info_bar_1_title" value="{{ $sections['info_bar'][1]['title'] ?? '' }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>عنوان العنصر 2 (مثال: WhatsApp)</label>
+                                        <input type="text" class="form-control" name="info_bar_2_title" value="{{ $sections['info_bar'][2]['title'] ?? '' }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>عنوان العنصر 3 (مثال: Call Us)</label>
+                                        <input type="text" class="form-control" name="info_bar_3_title" value="{{ $sections['info_bar'][3]['title'] ?? '' }}">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

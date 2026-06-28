@@ -1,6 +1,8 @@
 @php
     $setting = \App\Models\dashboard\Setting::getSettings();
     $footerCategories = \App\Models\dashboard\ProductCategory::where('status', 1)->take(4)->get();
+    $footerTitles = \App\Models\dashboard\PageContent::getSectionAsArray('footer', 'titles');
+    $footerItems = \App\Models\dashboard\PageContent::getGrouped('footer', 'items');
 @endphp
 
 <!-- Structural Minimal Footer -->
@@ -40,25 +42,26 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <h5>Information</h5>
+                <h5>{{ $footerTitles['info_title'] ?? 'Information' }}</h5>
                 <ul>
-                    <li><a href="{{ route('front.about') }}">Our Story</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Returns & Exchanges</a></li>
+                    @foreach($footerItems as $item)
+                    @if(!empty($item['title']))
+                    <li><a href="{{ $item['link'] ?? '#' }}">{{ $item['title'] }}</a></li>
+                    @endif
+                    @endforeach
                 </ul>
             </div>
             <div class="col-md-2">
-                <h5>Collections</h5>
+                <h5>{{ $footerTitles['collections_title'] ?? 'Collections' }}</h5>
                 <ul>
                     @foreach($footerCategories as $cat)
                     <li><a href="{{ route('front.category.show', $cat->slug) }}">{{ $cat->name }}</a></li>
                     @endforeach
-                    <li><a href="{{ route('front.category') }}">View All</a></li>
+                    <li><a href="{{ route('front.category') }}">{{ $footerTitles['view_all'] ?? 'View All' }}</a></li>
                 </ul>
             </div>
             <div class="col-md-4">
-                <h5>Customer Care</h5>
+                <h5>{{ $footerTitles['customer_care_title'] ?? 'Customer Care' }}</h5>
                 <ul class="footer-contact-list" style="line-height: 1.8;">
                     @if($setting->phone1)
                     <li><i class="fa-solid fa-phone me-2"></i> {{ $setting->phone1 }}</li>
@@ -77,7 +80,7 @@
         </div>
         <div class="row bottom-copyright text-center">
             <div class="col-12">
-                <p>All Rights Reserved &copy; {{ $setting->site_name ?? 'L.D Importer' }} {{ date('Y') }}</p>
+                <p>{{ $footerTitles['copyright'] ?? 'All Rights Reserved' }} &copy; {{ $setting->site_name ?? 'L.D Importer' }} {{ date('Y') }}</p>
             </div>
         </div>
     </div>
