@@ -1,6 +1,10 @@
 @extends('front.layouts.master')
 @php
     $labels = \App\Models\dashboard\PageContent::getSectionAsArray('product', 'labels');
+    $filterAll = \App\Models\dashboard\PageContent::getValue('category_page', 'filter', 'all_text', 'ALL');
+    $productsShow = \App\Models\dashboard\PageContent::getValue('category_page', 'products', 'show_text', 'SHOW');
+    $productsWord = \App\Models\dashboard\PageContent::getValue('category_page', 'products', 'word_text', 'PRODUCTS');
+    $trustFeatures = \App\Models\dashboard\PageContent::getGrouped('category_page', 'features');
 @endphp
 @section('title')
 {{ $category->name }} - L.D IMPORTER
@@ -28,7 +32,7 @@
                             <rect x="3" y="14" width="7" height="7" rx="1"/>
                             <rect x="14" y="14" width="7" height="7" rx="1"/>
                         </svg>
-                        <span>ALL</span>
+                        <span>{{ $filterAll }}</span>
                     </a>
                 </div>
                 @foreach($categories as $index => $cat)
@@ -48,8 +52,8 @@
     <!-- Toolbar -->
     <section class="container utility-controls-bar d-flex justify-content-between align-items-center">
         <div class="control-select-wrapper" data-aos="fade-up">
-            <span>SHOW</span>
-            <span class="fw-bold">{{ $products->count() }} PRODUCTS</span>
+            <span>{{ $productsShow }}</span>
+            <span class="fw-bold">{{ $products->count() }} {{ $productsWord }}</span>
         </div>
         <div class="d-flex align-items-center gap-4" data-aos="fade-up">
             <div class="view-mode-icons d-none d-sm-flex">
@@ -108,26 +112,15 @@
     <section class="trust-pillars-bar">
         <div class="container">
             <div class="row g-4">
-                <div class="col-6 col-md-3 pillar-item" data-aos="fade-up" data-aos-delay="50">
-                    <div class="pillar-icon"><i class="fa-solid fa-truck-fast"></i></div>
-                    <div class="pillar-title">FAST DELIVERY</div>
-                    <div class="pillar-subtitle">Secure, tracked priority shipping across all regions.</div>
+                @foreach($trustFeatures as $index => $feature)
+                @if(!empty($feature['title']))
+                <div class="col-6 col-md-3 pillar-item" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                    <div class="pillar-icon"><i class="{{ $feature['icon'] ?? 'fa-solid fa-check' }}"></i></div>
+                    <div class="pillar-title">{{ $feature['title'] }}</div>
+                    <div class="pillar-subtitle">{{ $feature['description'] ?? '' }}</div>
                 </div>
-                <div class="col-6 col-md-3 pillar-item" data-aos="fade-up" data-aos-delay="150">
-                    <div class="pillar-icon"><i class="fa-solid fa-award"></i></div>
-                    <div class="pillar-title">PREMIUM QUALITY</div>
-                    <div class="pillar-subtitle">Masterfully crafted utilizing premium grade raw elements.</div>
-                </div>
-                <div class="col-6 col-md-3 pillar-item" data-aos="fade-up" data-aos-delay="250">
-                    <div class="pillar-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="pillar-title">2 YEARS WARRANTY</div>
-                    <div class="pillar-subtitle">Full structural coverage protection guarantee on all products.</div>
-                </div>
-                <div class="col-6 col-md-3 pillar-item" data-aos="fade-up" data-aos-delay="350">
-                    <div class="pillar-icon"><i class="fa-solid fa-headset"></i></div>
-                    <div class="pillar-title">CUSTOMER SERVICE</div>
-                    <div class="pillar-subtitle">Dedicated luxury concierge consultants available 24/7.</div>
-                </div>
+                @endif
+                @endforeach
             </div>
         </div>
     </section>

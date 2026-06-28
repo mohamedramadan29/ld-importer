@@ -157,17 +157,19 @@
                         <div class="map-info-pane">
                             <h3>{!! nl2br($map['title'] ?? '') !!}</h3>
                             <p>{{ $map['description'] ?? '' }}</p>
-                            @if(!empty($map['button_text']))
-                            <a href="#" class="btn-find-store">
+                            <a href="{{ $map['embed'] }}" class="btn-find-store" target="_blank">
                                 <i class="fa-solid fa-location-crosshairs"></i>
-                                {{ $map['button_text'] }}
+                                {{ $map['button_text'] ?? 'Find Us on Map' }}
                             </a>
-                            @endif
                         </div>
                     </div>
                     <div class="col-lg-8">
                         <div class="map-iframe-container">
-                            <iframe src="{{ $map['embed'] }}"></iframe>
+                            @if(strpos($map['embed'], '/embed') !== false)
+                                <iframe src="{{ $map['embed'] }}" loading="lazy"></iframe>
+                            @else
+                                <iframe src="https://maps.google.com/maps?q={{ urlencode($map['embed']) }}&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+                            @endif
                         </div>
                     </div>
                 </div>

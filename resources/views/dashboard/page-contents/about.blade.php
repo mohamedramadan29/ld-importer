@@ -278,7 +278,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>رابط خرائط جوجل</label>
-                                        <input type="url" class="form-control" name="map_embed" value="{{ $sections['map']['embed'] ?? '' }}">
+                                        <input type="url" class="form-control" name="map_embed" value="{{ $sections['map']['embed'] ?? '' }}" placeholder="https://maps.app.goo.gl/...">
+                                        <small class="text-muted">يمكن إدخال رابط عادي من جوجل مابز أو رابط embed. للحصول على رابط embed: افتح خرائط جوجل → مشاركة → تضمين خريطة.</small>
                                     </div>
                                 </div>
                             </div>
