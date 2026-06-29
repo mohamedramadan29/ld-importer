@@ -1388,7 +1388,8 @@ footer .footer-contact-list li i {
 /* Side Promo Graphic */
 .side-promo-graphic {
     position: relative;
-    background-image: url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1000");
+    background-image: url("/assets/uploads/contact.jpeg");
+    /* background-image: url("{{ asset('assets/uploads/contact.jpeg') }}"); */
     background-size: cover;
     background-position: center;
     border-radius: 8px;
@@ -3396,5 +3397,264 @@ footer .footer-contact-list li i {
     }
     .catalog-main-wrapper.list-activated .catalog-meta {
         padding: 10px;
+    }
+}
+
+/* =====================================================
+   RTL SUPPORT (Hebrew / Arabic)
+   ===================================================== */
+[dir="rtl"] body {
+    font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+}
+
+/* Navbar RTL */
+[dir="rtl"] .nav-links-row {
+    direction: rtl;
+    justify-content: center;
+}
+[dir="rtl"] .nav-links-row .nav-link-custom:nth-child(1) { order: 10; }
+[dir="rtl"] .nav-links-row .nav-link-custom:nth-child(2) { order: 9; }
+[dir="rtl"] .nav-links-row .nav-link-custom:nth-child(3) { order: 8; }
+[dir="rtl"] .nav-links-row .nav-link-custom:nth-child(4) { order: 7; }
+[dir="rtl"] .nav-links-row .nav-link-custom:nth-child(5) { order: 6; }
+[dir="rtl"] .nav-links-row .nav-link-custom:nth-child(6) { order: 5; }
+[dir="rtl"] .nav-links-row .nav-link-custom:nth-child(7) { order: 4; }
+[dir="rtl"] .nav-links-row .nav-link-custom:nth-child(8) { order: 3; }
+[dir="rtl"] .menu-toggle {
+    order: 3;
+    margin-left: 0;
+    margin-right: auto;
+}
+[dir="rtl"] .navbar-brand-custom {
+    order: 2;
+}
+[dir="rtl"] .nav-icons {
+    order: 1;
+    margin-left: 22px;
+    margin-right: 0;
+}
+[dir="rtl"] .nav-icons button {
+    margin-left: 22px;
+    margin-right: 0;
+}
+[dir="rtl"] .nav-icons a {
+    margin-left: 22px;
+    margin-right: 0;
+}
+[dir="rtl"] .menu-toggle {
+    order: 1;
+    margin-left: 0;
+    margin-right: auto;
+}
+[dir="rtl"] .navbar-brand-custom {
+    order: 3;
+}
+[dir="rtl"] .nav-icons {
+    order: 3;
+    margin-left: 0px;
+    margin-right: 0;
+}
+[dir="rtl"] .nav-icons button {
+    margin-left: 20px;
+    margin-right: 0;
+}
+[dir="rtl"] .nav-icons a {
+    margin-left: 0px;
+    margin-right: 0;
+}
+
+/* Offcanvas RTL */
+[dir="rtl"] .offcanvas-end {
+    direction: rtl;
+}
+[dir="rtl"] .offcanvas-end .offcanvas-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    direction: rtl;
+}
+[dir="rtl"] .offcanvas-end .offcanvas-header .btn-close {
+    order: 1;
+}
+[dir="rtl"] .offcanvas-end .offcanvas-header .footer-logo-area {
+    order: 2;
+    text-align: left;
+}
+[dir="rtl"] .offcanvas-end .offcanvas-body {
+    direction: rtl;
+    text-align: right;
+}
+[dir="rtl"] .offcanvas-menu-links a {
+    text-align: right;
+    direction: rtl;
+}
+[dir="rtl"] .offcanvas-custom {
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: none;
+}
+
+/* Float & Text Alignment */
+[dir="rtl"] .text-start {
+    text-align: right !important;
+}
+[dir="rtl"] .text-md-start {
+    text-align: right !important;
+}
+[dir="rtl"] .justify-content-md-start {
+    justify-content: flex-end !important;
+}
+
+/* Arrows RTL */
+[dir="rtl"] .fa-arrow-right-long,
+[dir="rtl"] .fa-arrow-right,
+[dir="rtl"] .fa-chevron-left {
+    transform: scaleX(-1);
+}
+[dir="rtl"] .fa-chevron-right {
+    transform: scaleX(-1);
+}
+
+/* Section Header */
+[dir="rtl"] .section-header {
+    direction: rtl;
+}
+
+/* Product Page Breadcrumbs */
+[dir="rtl"] .breadcrumb-section {
+    direction: rtl;
+}
+
+/* Search Input */
+[dir="rtl"] .search-main-input {
+    padding-left: 16px;
+    padding-right: 45px;
+}
+[dir="rtl"] .search-main-input + .fa-magnifying-glass,
+[dir="rtl"] .position-absolute.fa-magnifying-glass {
+    left: auto;
+    right: 20px;
+}
+
+/* Form Controls RTL */
+[dir="rtl"] .form-control,
+[dir="rtl"] .form-select {
+    text-align: right;
+}
+
+/* Info Bar About Page */
+[dir="rtl"] .info-bar-item {
+    direction: rtl;
+}
+
+/* Carousel Controls RTL */
+[dir="rtl"] .carousel-control-prev {
+    right: 0;
+    left: auto;
+}
+[dir="rtl"] .carousel-control-next {
+    left: 0;
+    right: auto;
+}
+
+/* Featured Slider RTL */
+[dir="rtl"] .featured-slider-track {
+    direction: rtl;
+}
+
+/* Map Section RTL */
+[dir="rtl"] .map-section-box .row {
+    direction: rtl;
+}
+
+/* Contact Page RTL */
+[dir="rtl"] .channel-card {
+    text-align: right;
+}
+[dir="rtl"] .help-card {
+    text-align: right;
+}
+[dir="rtl"] .help-arrow-btn {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Footer RTL */
+[dir="rtl"] footer .row {
+    direction: rtl;
+}
+[dir="rtl"] .footer-contact-list li {
+    direction: rtl;
+}
+[dir="rtl"] .footer-social-links a {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+/* Category Filter RTL */
+[dir="rtl"] .filter-tab-card {
+    direction: rtl;
+}
+
+/* About Page Brief RTL */
+[dir="rtl"] .brief-stat-box {
+    text-align: center;
+}
+
+/* Service Card RTL */
+[dir="rtl"] .service-card-body {
+    text-align: right;
+}
+
+/* Why Us Card RTL */
+[dir="rtl"] .why-us-card {
+    text-align: right;
+}
+
+/* WhatsApp Button RTL */
+[dir="rtl"] .whatsapp-floating-btn {
+    right: auto;
+    left: 30px;
+}
+
+/* Product Details RTL */
+[dir="rtl"] .product_page .row {
+    direction: rtl;
+}
+[dir="rtl"] .product-title {
+    text-align: right;
+}
+[dir="rtl"] .product-description {
+    text-align: right;
+}
+[dir="rtl"] .spec-box {
+    text-align: center;
+}
+[dir="rtl"] .sub-section-title {
+    text-align: right;
+}
+
+/* Trust Pillars RTL */
+[dir="rtl"] .pillar-item {
+    text-align: center;
+}
+
+/* Utility Controls RTL */
+[dir="rtl"] .control-select-wrapper {
+    direction: rtl;
+}
+
+/* Quick Add Button */
+[dir="rtl"] .quick-add-overlay-btn {
+    direction: rtl;
+}
+
+/* Mobile RTL */
+@media (max-width: 768px) {
+    [dir="rtl"] .nav-links-row {
+        direction: rtl;
+    }
+    [dir="rtl"] .offcanvas-menu-links a {
+        text-align: right;
     }
 }

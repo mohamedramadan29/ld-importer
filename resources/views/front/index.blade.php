@@ -198,6 +198,7 @@
     let featuredCurrentIndex = 0;
     const featuredTrack = document.getElementById('featuredTrack');
     const featuredSlides = featuredTrack ? featuredTrack.querySelectorAll('.featured-slide') : [];
+    const isRTL = document.documentElement.dir === 'rtl';
 
     function scrollFeatured(direction) {
         const slidesToShow = window.innerWidth > 768 ? 4 : 2;
@@ -208,7 +209,8 @@
         if (featuredCurrentIndex > maxIndex) featuredCurrentIndex = 0;
 
         const slideWidth = featuredTrack.parentElement.offsetWidth / slidesToShow;
-        featuredTrack.style.transform = `translateX(-${featuredCurrentIndex * slideWidth}px)`;
+        const offset = featuredCurrentIndex * slideWidth;
+        featuredTrack.style.transform = isRTL ? `translateX(${offset}px)` : `translateX(-${offset}px)`;
     }
 
     // Auto scroll
