@@ -108,7 +108,7 @@
         @else
         <div class="text-center py-5">
             <i class="fa-solid fa-box-open fa-3x text-muted mb-3"></i>
-            <p class="text-muted">No products available yet.</p>
+            <p class="text-muted">אין מוצרים זמינים כרגע</p>
         </div>
         @endif
     </main>

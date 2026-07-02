@@ -99,9 +99,9 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="dimensions"> الأبعاد </label>
-                <input type="text" id="dimensions" class="form-control @error('dimensions') is-invalid @enderror"
+                <textarea id="dimensions" class="form-control @error('dimensions') is-invalid @enderror"
                     placeholder="مثال: 140 × 88 × 39 cm" name="dimensions"
-                    value="{{ old('dimensions', isset($product) ? $product->dimensions : '') }}">
+                    rows="3">{{ old('dimensions', isset($product) ? $product->dimensions : '') }}</textarea>
                 @error('dimensions')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -112,9 +112,9 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="materials"> الخامات </label>
-                <input type="text" id="materials" class="form-control @error('materials') is-invalid @enderror"
+                <textarea id="materials" class="form-control @error('materials') is-invalid @enderror"
                     placeholder="مثال: Natural Wood + Stone" name="materials"
-                    value="{{ old('materials', isset($product) ? $product->materials : '') }}">
+                    rows="3">{{ old('materials', isset($product) ? $product->materials : '') }}</textarea>
                 @error('materials')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -125,9 +125,9 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="color"> اللون </label>
-                <input type="text" id="color" class="form-control @error('color') is-invalid @enderror"
+                <textarea id="color" class="form-control @error('color') is-invalid @enderror"
                     placeholder="مثال: Walnut + Black" name="color"
-                    value="{{ old('color', isset($product) ? $product->color : '') }}">
+                    rows="3">{{ old('color', isset($product) ? $product->color : '') }}</textarea>
                 @error('color')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -152,13 +152,10 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="availability"> حالة التوفر </label>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="availability" name="availability"
-                        {{ old('availability', isset($product) ? $product->availability : true) ? 'checked' : '' }}>
-                    <label class="custom-control-label" for="availability">
-                        متوفر
-                    </label>
-                </div>
+                <select id="availability" class="form-control" name="availability">
+                    <option value="1" {{ old('availability', isset($product) ? $product->availability : 1) ? 'selected' : '' }}>متوفر</option>
+                    <option value="0" {{ old('availability', isset($product) ? $product->availability : 1) == 0 ? 'selected' : '' }}>غير متوفر</option>
+                </select>
             </div>
         </div>
 
@@ -166,13 +163,10 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="status"> حالة العرض </label>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="status" name="status"
-                        {{ old('status', isset($product) ? $product->status : true) ? 'checked' : '' }}>
-                    <label class="custom-control-label" for="status">
-                        مفعّل
-                    </label>
-                </div>
+                <select id="status" class="form-control" name="status">
+                    <option value="1" {{ old('status', isset($product) ? $product->status : 1) ? 'selected' : '' }}>مفعّل</option>
+                    <option value="0" {{ old('status', isset($product) ? $product->status : 1) == 0 ? 'selected' : '' }}>غير مفعّل</option>
+                </select>
             </div>
         </div>
 

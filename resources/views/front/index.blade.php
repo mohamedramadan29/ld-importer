@@ -159,7 +159,7 @@
         @if($featuredProducts->isEmpty())
             <div class="col-12 text-center text-muted py-5">
                 <i class="fa-solid fa-box-open fa-3x mb-3"></i>
-                <p>No products available</p>
+                <p>אין מוצרים זמינים כרגע</p>
             </div>
             @endif
         </div>

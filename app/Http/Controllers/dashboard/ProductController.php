@@ -86,7 +86,8 @@ class ProductController extends Controller
         $product->materials = $request->materials;
         $product->color = $request->color;
         $product->delivery_info = $request->delivery_info;
-        $product->status = $request->has('status') ? 1 : 0;
+        $product->status = $request->input('status', 0);
+        $product->availability = $request->input('availability', 0);
         $product->meta_title = $request->meta_title;
         $product->meta_description = $request->meta_description;
         $product->meta_keywords = $request->meta_keywords;
@@ -179,7 +180,8 @@ class ProductController extends Controller
         $product->materials = $request->materials;
         $product->color = $request->color;
         $product->delivery_info = $request->delivery_info;
-        $product->status = $request->has('status') ? 1 : 0;
+        $product->status = $request->input('status', 0);
+        $product->availability = $request->input('availability', 0);
         $product->meta_title = $request->meta_title;
         $product->meta_description = $request->meta_description;
         $product->meta_keywords = $request->meta_keywords;
