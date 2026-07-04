@@ -77,28 +77,36 @@
             <div class="col-lg-6">
                 <div class="form-container-box">
                     <h3>{{ $form['title'] ?? 'Send us a message' }}</h3>
-                    <form action="#" method="POST">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul style="margin:0;">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="{{ route('front.contact.submit') }}" method="POST" id="contactForm">
+                        @csrf
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label d-none">Name</label>
-                                <input type="text" class="form-control" placeholder="{{ $form['name_placeholder'] ?? 'Full Name' }}" required>
+                                <input type="text" name="name" class="form-control" placeholder="{{ $form['name_placeholder'] ?? 'Full Name' }}" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label d-none">Phone</label>
-                                <input type="tel" class="form-control" placeholder="{{ $form['phone_placeholder'] ?? 'Phone Number' }}" required>
+                                <input type="tel" name="phone" class="form-control" placeholder="{{ $form['phone_placeholder'] ?? 'Phone Number' }}" required>
                             </div>
                             <div class="col-12">
-                                <label class="form-label d-none">City</label>
-                                <select class="form-select" required>
-                                    <option value="" selected disabled>{{ $form['city_placeholder'] ?? 'City' }}</option>
-                                    <option value="1">North Region</option>
-                                    <option value="2">Central Region</option>
-                                    <option value="3">South Region</option>
-                                </select>
+                                <label class="form-label d-none">Country</label>
+                                <input type="text" name="country" class="form-control" placeholder="{{ $form['city_placeholder'] ?? 'Country' }}" required>
                             </div>
                             <div class="col-12">
                                 <label class="form-label d-none">Message</label>
-                                <textarea class="form-control" rows="5" placeholder="{{ $form['message_placeholder'] ?? 'Your message' }}" required></textarea>
+                                <textarea name="message" class="form-control" rows="5" placeholder="{{ $form['message_placeholder'] ?? 'Your message' }}" required></textarea>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-submit-form">

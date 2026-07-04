@@ -61,7 +61,7 @@
                 <h2 class="section-title-en">{{ $categoriesMeta['title'] ?? 'Collections' }}</h2>
             </div>
             @if(!empty($categoriesMeta['view_all']))
-            <a href="#" class="section-view-all">{{ $categoriesMeta['view_all'] }} &nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+            <a href="{{ $categoriesMeta['view_all_url'] ?? route('front.category') }}" class="section-view-all">{{ $categoriesMeta['view_all'] }} &nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
             @endif
         </div>
 
@@ -93,7 +93,7 @@
             <h3>{!! nl2br($philosophy['title'] ?? "OUR\nPHILOSOPHY") !!}</h3>
             <p>{{ $philosophy['description'] ?? '' }}</p>
             @if(!empty($philosophy['link_text']))
-            <a href="#" class="text-white text-decoration-none uppercase"
+            <a href="{{ $philosophy['link_url'] ?? '#' }}" class="text-white text-decoration-none uppercase"
                 style="font-size: 12px; letter-spacing: 2px;">{{ $philosophy['link_text'] }} &nbsp; →</a>
             @endif
         </div>

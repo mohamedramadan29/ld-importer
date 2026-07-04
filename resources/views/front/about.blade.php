@@ -147,37 +147,6 @@
         </div>
     </section>
 
-    <!-- MAP SECTION -->
-    @if(!empty($map['embed']))
-    <section class="section-padding pt-0">
-        <div class="container">
-            <div class="map-section-box">
-                <div class="row g-0">
-                    <div class="col-lg-4">
-                        <div class="map-info-pane">
-                            <h3>{!! nl2br($map['title'] ?? '') !!}</h3>
-                            <p>{{ $map['description'] ?? '' }}</p>
-                            <a href="{{ $map['embed'] }}" class="btn-find-store" target="_blank">
-                                <i class="fa-solid fa-location-crosshairs"></i>
-                                {{ $map['button_text'] ?? 'Find Us on Map' }}
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="map-iframe-container">
-                            @if(strpos($map['embed'], '/embed') !== false)
-                                <iframe src="{{ $map['embed'] }}" loading="lazy"></iframe>
-                            @else
-                                <iframe src="https://maps.google.com/maps?q={{ urlencode($map['embed']) }}&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    @endif
-
     <!-- CONTACT GRID SECTION -->
     <section class="section-padding pt-0">
         <div class="container">

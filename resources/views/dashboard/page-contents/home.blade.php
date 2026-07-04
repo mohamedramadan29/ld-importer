@@ -126,18 +126,25 @@
                     <div class="card-content collapse show">
                         <div class="card-body">
                             <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>عنوان القسم</label>
                                         <input type="text" class="form-control" name="categories_meta_title"
                                             value="{{ $sections['categories_meta']['title'] ?? '' }}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>نص رابط "عرض الكل"</label>
                                         <input type="text" class="form-control" name="categories_meta_view_all"
                                             value="{{ $sections['categories_meta']['view_all'] ?? '' }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>رابط "عرض الكل"</label>
+                                        <input type="text" class="form-control" name="categories_meta_view_all_url"
+                                            placeholder="https://..." value="{{ $sections['categories_meta']['view_all_url'] ?? '' }}">
                                     </div>
                                 </div>
                             </div>
@@ -202,6 +209,13 @@
                                         <label>نص الرابط</label>
                                         <input type="text" class="form-control" name="philosophy_link_text"
                                             value="{{ $sections['philosophy']['link_text'] ?? '' }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>رابط الرابط</label>
+                                        <input type="text" class="form-control" name="philosophy_link_url"
+                                            placeholder="https://..." value="{{ $sections['philosophy']['link_url'] ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="col-md-2">

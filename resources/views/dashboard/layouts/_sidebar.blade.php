@@ -99,6 +99,13 @@
                 </ul>
             </li>
 
+            <li class="nav-item {{ Route::is('dashboard.messages.*') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.messages.index') }}">
+                    <i class="la la-envelope"></i>
+                    <span class="menu-title" data-i18n="nav.messages">رسائل الاتصال</span>
+                </a>
+            </li>
+
         </ul>
     </div>
 </div>

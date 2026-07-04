@@ -164,5 +164,16 @@ Route::group([
             });
         });
         ##################### End Page Contents ####################
+
+        ##################### Start Contact Messages ####################
+        Route::group(['prefix' => 'messages', 'as' => 'messages.'], function () {
+            Route::controller(\App\Http\Controllers\dashboard\ContactMessageController::class)->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/{id}', 'show')->name('show');
+                Route::delete('/{id}', 'destroy')->name('destroy');
+                Route::post('/{id}/mark-read', 'markRead')->name('mark-read');
+            });
+        });
+        ##################### End Contact Messages ####################
     });
 });

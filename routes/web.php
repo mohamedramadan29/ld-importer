@@ -11,6 +11,7 @@ Route::controller(FrontController::class)->group(function(){
     Route::get('/', 'index')->name('front.index');
     Route::get('/about', 'about')->name('front.about');
     Route::get('/contact', 'contact')->name('front.contact');
+    Route::post('/contact/submit', 'submitContact')->name('front.contact.submit');
 });
 Route::controller(ProductController::class)->group(function(){
     Route::get('category','category')->name('front.category');

@@ -275,11 +275,18 @@
                                         <input type="text" class="form-control" name="map_button_text" value="{{ $sections['map']['button_text'] ?? '' }}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>رابط خرائط جوجل</label>
-                                        <input type="url" class="form-control" name="map_embed" value="{{ $sections['map']['embed'] ?? '' }}" placeholder="https://maps.app.goo.gl/...">
-                                        <small class="text-muted">يمكن إدخال رابط عادي من جوجل مابز أو رابط embed. للحصول على رابط embed: افتح خرائط جوجل → مشاركة → تضمين خريطة.</small>
+                                        <label>رابط خرائط جوجل (للزر)</label>
+                                        <input type="url" class="form-control" name="map_link" value="{{ $sections['map']['link'] ?? '' }}" placeholder="https://maps.app.goo.gl/...">
+                                        <small class="text-muted">هذا الرابط يفتح عند الضغط على زر "Find Us on Map"</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>رابط embed للخريطة</label>
+                                        <input type="url" class="form-control" name="map_embed" value="{{ $sections['map']['embed'] ?? '' }}" placeholder="https://www.google.com/maps/embed?...">
+                                        <small class="text-muted">يتم عرضه في صفحة "من نحن". للحصول عليه: خرائط جوجل → مشاركة → تضمين خريطة</small>
                                     </div>
                                 </div>
                             </div>
